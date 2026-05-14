@@ -21,6 +21,7 @@ export interface FetchNotesParams {
   page: number;
   perPage: number;
   search?: string;
+  tag?: string;
 }
 
 export interface FetchNotesResponse {
@@ -43,6 +44,9 @@ export const fetchNotes = async (
   };
   if (params.search) {
     queryParams.search = params.search;
+  }
+  if (params.tag) {
+    queryParams.tag = params.tag;
   }
 
   const response: AxiosResponse<FetchNotesResponse> = await api.get("/notes", {
